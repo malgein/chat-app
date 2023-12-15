@@ -60,7 +60,26 @@ const registerUser = asyncHandler(async (req, res) => {
 		}
 	});
 	
+	//controlador cuya funcion es buscar usuarios por name y email en la aplicacion de chat
+  const allUsers = asyncHandler(async (req, res) => {
+    const keyword = req.query.search
+      ? {
+				//or es un operador de mongoDB
+          $or: [
+						//La i describe que la coincidencia puede ser indiferente a mayusculas 
+            { name: { $regex: req.query.search, $options: "i" } },
+						//Buscamos a traves de los regex coincidencias en queries de name y email
+            { email: { $regex: req.query.search, $options: "i" } },
+          ],
+        }
+      : {};
+  
+		//buscamos en la BD usuarios con las coincidencia de las queries alla arriba es decir  buscamos usuarios por email y name 
+		//la linea del _id explica que buscara todos los usuarios menos quien esta logeado 
+    const users = await User.find(keyword).find({ _id: { $ne: req.user._id } });
+    res.send(users);
+  });
 
 
 
-	module.exports ={registerUser, authUser}
+	module.exports ={registerUser, authUser, allUsers}

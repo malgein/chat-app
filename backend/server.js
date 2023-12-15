@@ -5,6 +5,7 @@ const cors = require('cors')
 const connectDB = require('./config/db')
 const userRoutes = require("./routes/userRoutes");
 const { notFound, errorHandler } = require('./middleware/errorMiddleware')
+const chatRoutes = require('./routes/chatRoutes')
 
 
 
@@ -36,6 +37,8 @@ app.get('/' , (req, res) => {
 
 //Hace que todas las rutas empiezen pos /api/user
 app.use('/api/user', userRoutes)
+
+app.use('/api/chat', chatRoutes)
 
 app.use(notFound)
 app.use(errorHandler)
