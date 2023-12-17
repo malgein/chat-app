@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {Box, 
   Container, 
   Text, 
@@ -10,8 +10,20 @@ import {Box,
 } from '@chakra-ui/react'
 import Login from '../authentication/Login'
 import Signup from '../authentication/Signup'
+import {useNavigate} from 'react-router-dom'
 
 const HomePage = () => {
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    //El valor del usuario logeado se guarda en el local storage
+    const user = JSON.parse(localStorage.getItem("userInfo"));
+
+    if (user) navigate("/chats");
+  }, []);
+
+
   return (
     <Container>
       <Box
