@@ -10,24 +10,12 @@ const ChatPage = () => {
 
 	const {user} = ChatState()
 
-	// const [chats, setChats] = useState([])
-
-	// const fethChats = async() => {
-	// 	const result = await axios.post('http://localhost:5000/api/chat/')
-
-	// 	setChats(result.data)
-	// }
-
-	// useEffect(() => {
-	// 	fethChats()
-	// }, [])
-	
 	console.log(user)
 
   return (
     <div style={{ width: "100%", display: "flex", flexDirection: "column"}}>
 			 {user && <SideDrawer />}
-      <Box d="flex" justifyContent="space-between" w="100%" h="91.5vh" p="10px">
+      <Box display="flex" justifyContent="space-between" w="100%" h="91.5vh" p="10px">
         {user && <Mychats  />}
         {user && (
           <ChatBox  />

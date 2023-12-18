@@ -7,12 +7,19 @@ const ChatProvider = ({children}) => {
 
 	const [user, setUser] = useState();
 
+	const [selectedChat, setSelectedChat] = useState()
+
+	const [chats, setChats] = useState([])
+
 	const navigate = useNavigate()
 
 	useEffect(() => {
+		//Se le pasa a la variable el usuario del local storage
     const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+		//Luego se le pasa al esatdo user  el userInfo
     setUser(userInfo);
 
+		// si no hay un usuario logeadp  devuelveme a la home
     if (!userInfo) navigate("/");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -21,7 +28,11 @@ const ChatProvider = ({children}) => {
 		<ChatContext.Provider
 		value={{
 				user,
-				setUser
+				setUser,
+				selectedChat,
+				setSelectedChat,
+				chats,
+				setChats
 			}}
 			>{children}
 		</ChatContext.Provider>

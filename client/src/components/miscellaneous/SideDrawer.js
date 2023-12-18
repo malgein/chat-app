@@ -29,13 +29,18 @@ import ProfileModel from './ProfileModel';
 import axios from 'axios'
 //Spinner de nuestra app
 import ChatLoading from '../ChatLoading';
+//componente de renderizado con el mapeado de los usuarios a buscar 
+import UserListItem from '../userAvatar/userListItem';
+import { Spinner } from '@chakra-ui/react';
 
 //Este componente representa el navbar y el sidebar tipo modal de la app
 const SideDrawer = () => {
 
 	//Estado que contiene el nombre o el email del usuario a buscar
   const [search, setSearch] = useState("");
+	//Guardamos el resultado de la llamada al backend de buscar a los usuarios por name o por email
   const [searchResult, setSearchResult] = useState([]);
+	//Representa el loading de la app cuando esta en true esta cargando por lo que tras bambalinas esta pasando algo (una busqueda de algo a traves de una llamada al backend por ej) y cuando se ejecuta esa busqueda la pasamos a false que ya deja de cargar
   const [loading, setLoading] = useState(false);
   const [loadingChat, setLoadingChat] = useState(false);
 	const { isOpen, onOpen, onClose } = useDisclosure();
@@ -44,7 +49,7 @@ const SideDrawer = () => {
 	const navigate = useNavigate()
 
 	//Usuario logeado proviene del context
-	const {user} = ChatState()
+	const {user, setSelectedChat, chats, setChats} = ChatState()
 
 	//Funcion que deslogea al usuario
 	const logoutHandler = () => {
@@ -78,11 +83,46 @@ const SideDrawer = () => {
       const { data } = await axios.get(`http://localhost:5000/api/user?search=${search}`, config);
 
       setLoading(false);
+			//Guardamos el resultado  que nos devuelve el endpoint del backend en searchResult state
       setSearchResult(data);
     } catch (error) {
       toast({
         title: "Error Occured!",
         description: "Failed to Load the Search Results",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom-left",
+      });
+    }
+
+	}
+
+	//FUncion que trae el chat del usuario seleccionado y el usuario logeado, si no existe ese chat lo crea de cero
+	const accessChat = async(userId) => {
+		console.log(userId);
+
+    try {
+      setLoadingChat(true);
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${user.token}`,
+        },
+      };
+      const { data } = await axios.post(`http://localhost:5000/api/chat`, { userId }, config);
+
+			//chats son todos los chats de la bd aqui verificara que el chat traido entre los dos usuarios anteriormente ya se encuentre entre los chats de la bd si no se encuentra lo actualiza
+      if (!chats.find((c) => c._id === data._id)) setChats([data, ...chats]);
+			//Implica la data del chat 
+      setSelectedChat(data);
+      setLoadingChat(false);
+			//Cerramos el modal
+      onClose();
+    } catch (error) {
+      toast({
+        title: "Error fetching the chat",
+        description: error.message,
         status: "error",
         duration: 5000,
         isClosable: true,
@@ -161,7 +201,17 @@ const SideDrawer = () => {
 							{/* Boton para realizar la busqueda */}
               <Button onClick={handleSearch}>Go</Button>
             </Box>
-						{loading ? <ChatLoading /> : <span>results</span>}
+						{/* Si no esta cargando la app renderiza el mapeo de usuarios buscados por nombre / email */}
+						{loading ? (<ChatLoading /> ): (
+							searchResult?.map(user => (
+								<UserListItem 
+									key={user?._id}
+									handleFunction={() => accessChat(user?._id)}
+									user={user}
+								/>
+							))
+						) }
+						{loadingChat && <Spinner ml="auto" display="flex" />}
 					</DrawerBody>
 				</DrawerContent>
 			</Drawer>
