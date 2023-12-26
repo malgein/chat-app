@@ -6,7 +6,7 @@ import { Box, Text } from "@chakra-ui/layout";
 
 const UserListItem = ({ handleFunction, user }) => {
   // const { user } = ChatState();
-
+ 
   return (
     <Box
       onClick={handleFunction}

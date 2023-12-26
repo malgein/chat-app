@@ -30,7 +30,7 @@ import axios from 'axios'
 //Spinner de nuestra app
 import ChatLoading from '../ChatLoading';
 //componente de renderizado con el mapeado de los usuarios a buscar 
-import UserListItem from '../userAvatar/userListItem';
+import UserListItem from '../userAvatar/UserListItem'
 import { Spinner } from '@chakra-ui/react';
 
 //Este componente representa el navbar y el sidebar tipo modal de la app

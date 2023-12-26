@@ -6,11 +6,13 @@ import { Button } from "@chakra-ui/react";
 import { ChatState } from "../context/chatProvider";
 import { AddIcon } from '@chakra-ui/icons';
 import ChatLoading from './ChatLoading';
+//Funcion necesaria para poder seleccionar el chat
 import {getSender} from '../config/ChatLogics'
+import GroupChatModel from './miscellaneous/GroupChatModel';
 
 
-
-const Mychats = () => {
+// fetchAgain es una funcion que se pasa por props y que se va a ejecutar para traer los chats del usuario actualizados
+const Mychats = ({fetchAgain}) => {
 
   const [loggedUser, setLoggedUser] = useState();
 
@@ -48,7 +50,7 @@ const Mychats = () => {
     setLoggedUser(JSON.parse(localStorage.getItem("userInfo")));
     fetchChats();
     // eslint-disable-next-line
-  }, []);
+  }, [fetchAgain]);
 
 
   return (
@@ -74,13 +76,15 @@ const Mychats = () => {
         alignItems="center"
       >
         My chats
-        <Button
-            display="flex"
-            fontSize={{ base: "17px", md: "10px", lg: "17px" }}
-            rightIcon={<AddIcon />}
-          >
-            New Group Chat
+        <GroupChatModel>
+          <Button
+              display="flex"
+              fontSize={{ base: "17px", md: "10px", lg: "17px" }}
+              rightIcon={<AddIcon />}
+            >
+              New Group Chat
           </Button>
+        </GroupChatModel>
       </Box>
 			<Box
         d="flex"

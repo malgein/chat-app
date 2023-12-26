@@ -16,7 +16,7 @@ const ChatProvider = ({children}) => {
 	useEffect(() => {
 		//Se le pasa a la variable el usuario del local storage
     const userInfo = JSON.parse(localStorage.getItem("userInfo"));
-		//Luego se le pasa al esatdo user  el userInfo
+		//Luego se le pasa al estado user  el userInfo
     setUser(userInfo);
 
 		// si no hay un usuario logeadp  devuelveme a la home
