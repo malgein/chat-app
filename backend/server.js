@@ -6,6 +6,7 @@ const connectDB = require('./config/db')
 const userRoutes = require("./routes/userRoutes");
 const { notFound, errorHandler } = require('./middleware/errorMiddleware')
 const chatRoutes = require('./routes/chatRoutes')
+const messageRoutes = require('./routes/messageRoutes')
 
 
 
@@ -37,8 +38,12 @@ app.get('/' , (req, res) => {
 
 //Hace que todas las rutas empiezen pos /api/user
 app.use('/api/user', userRoutes)
-
+// Rutas del chat
 app.use('/api/chat', chatRoutes)
+// rutas de mensajes
+app.use("/api/message", messageRoutes);
+
+
 
 app.use(notFound)
 app.use(errorHandler)
