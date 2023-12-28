@@ -82,7 +82,8 @@ const UpdateGroupChatModel = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
       setSelectedChat(data);
        // Ejecutamos fethAgain para actualizar todo
       setFetchAgain(!fetchAgain);
-      // fetchMessages();
+      // actualizamos los mensajes cada vez que borremos a un usuario
+      fetchMessages();
          // Apagamos el loading indicando que las cosas en el backend terminaron
       setLoading(false);
     } catch (error) {
