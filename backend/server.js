@@ -51,4 +51,55 @@ app.use(errorHandler)
 const PORT = process.env.PORT || 5000
 
 
-app.listen(PORT, console.log('Server start in port 5000'))
+const server = app.listen(PORT, console.log('Server start in port 5000'))
+
+const io = require("socket.io")(server, {
+	//Se refiere al tiempo de espera mientras esta inactivo si en 1 minuto ningun usuario hace uso se cierra por proteccion
+	pingTimeout: 60000,
+	cors: {
+	  origin: "http://localhost:3000",
+	  // credentials: true,
+	},
+  });
+
+  io.on("connection", (socket) => {
+	console.log("Connected to socket.io");
+
+	//Estamos creando un room uno por cada usuario
+	// userData representa los datos del usuario 
+	socket.on("setup", (userData) => {
+    socket.join(userData._id);
+		// console.log(userData._id)
+    socket.emit("connected");
+  });
+
+	// crea un room para unirse el frontend
+	socket.on("join chat", (room) => {
+    socket.join(room);
+    console.log("User Joined Room: " + room);
+  });
+
+	// Funcionalidad para isTyping
+	socket.on("typing", (room) => socket.in(room).emit("typing"));
+  socket.on("stop typing", (room) => socket.in(room).emit("stop typing"));
+
+	// room llamado new message
+	socket.on("new message", (newMessageRecieved) => {
+    var chat = newMessageRecieved.chat;
+
+    if (!chat.users) return console.log("chat.users not defined");
+
+    chat.users.forEach((user) => {
+      if (user._id == newMessageRecieved.sender._id) return;
+
+      socket.in(user._id).emit("message recieved", newMessageRecieved);
+    });
+  });
+
+	// Funcionalidad para apagar el socket y que no consuma muchos recursos
+	socket.off("setup", () => {
+    console.log("USER DISCONNECTED");
+    socket.leave(userData._id);
+  });
+});
+    
