@@ -11,6 +11,10 @@ const ChatProvider = ({children}) => {
 
 	const [chats, setChats] = useState([])
 
+	// Estado global para las notificaciones de la app
+	const [notification, setNotification] = useState([]);
+
+
 	const navigate = useNavigate()
 
 	useEffect(() => {
@@ -32,7 +36,9 @@ const ChatProvider = ({children}) => {
 				selectedChat,
 				setSelectedChat,
 				chats,
-				setChats
+				setChats,
+				notification,
+				setNotification
 			}}
 			>{children}
 		</ChatContext.Provider>

@@ -87,7 +87,7 @@ const Mychats = ({fetchAgain}) => {
         </GroupChatModel>
       </Box>
 			<Box
-        d="flex"
+        display="flex"
         flexDir="column"
         p={3}
         bg="#F8F8F8"
@@ -100,6 +100,7 @@ const Mychats = ({fetchAgain}) => {
           <Stack overflowY="scroll">
             {chats.map((chat) => (
               <Box
+              // Funcion que hace que el chat que seleccionemos sea el elegido para mostrar en la ventana de chats
                 onClick={() => setSelectedChat(chat)}
                 cursor="pointer"
                 bg={selectedChat === chat ? "#38B2AC" : "#E8E8E8"}
@@ -115,14 +116,15 @@ const Mychats = ({fetchAgain}) => {
                     ? getSender(loggedUser, chat.users)
                     : chat.chatName}
                 </Text>
-                {/* {chat.latestMessage && (
+                {/* Muestra los chats con sus ultimos mensajes */}
+                {chat.latestMessage && (
                   <Text fontSize="xs">
                     <b>{chat.latestMessage.sender.name} : </b>
                     {chat.latestMessage.content.length > 50
                       ? chat.latestMessage.content.substring(0, 51) + "..."
                       : chat.latestMessage.content}
                   </Text>
-                )} */}
+                )}
               </Box>
             ))}
           </Stack>

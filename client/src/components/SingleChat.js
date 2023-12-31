@@ -16,6 +16,7 @@ import axios from 'axios'
 import io from "socket.io-client";
 import Lottie from 'react-lottie'
 import animationData from '../animations/typing.json'
+import "./styles.css";
 
 
 
@@ -42,7 +43,7 @@ const SingleChat = ({fetchAgain, setFetchAgain}) => {
     },
   };
 
-  const { selectedChat, setSelectedChat, user } = ChatState();
+  const { selectedChat, setSelectedChat, user, notification, setNotification } = ChatState();
 
   // Endpoint del backend
   const ENDPOINT = "http://localhost:5000"; 
@@ -75,7 +76,7 @@ const SingleChat = ({fetchAgain, setFetchAgain}) => {
         `http://localhost:5000/api/message/${selectedChat._id}`,
         config
       );
-      console.log(messages)
+      // console.log(messages)
       // Guardamos todos los mensajes en el state correspondiente messages
       setMessages(data);
       // han dejado de pasar cosas en el backend loading off
@@ -167,16 +168,21 @@ const SingleChat = ({fetchAgain, setFetchAgain}) => {
    // Apenas se cambia el chat seleccionado se traen todos los chats del nuevo chat seleccionado
  }, [selectedChat]);
 
+ console.log(notification)
+
  useEffect(() => {
    socket.current.on("message recieved", (newMessageRecieved) => {
      if (
        !selectedChatCompare.current || // if chat is not selected or doesn't match current chat
        selectedChatCompare.current._id !== newMessageRecieved.chat._id
      ) {
-       // if (!notification.includes(newMessageRecieved)) {
-       //   setNotification([newMessageRecieved, ...notification]);
-       //   setFetchAgain(!fetchAgain);
-       // }
+      // Logica de notificaciones
+      // Si las notificaciones que ya existen no incluyen la notificacion que se esta agregando recientemente
+       if (!notification.includes(newMessageRecieved)) {
+        // Agregamos el mensaje recibido a las notificaciones
+         setNotification([newMessageRecieved, ...notification]);
+         setFetchAgain(!fetchAgain);
+       }
      } else {
        setMessages([...messages, newMessageRecieved]);
      }
@@ -193,6 +199,7 @@ const SingleChat = ({fetchAgain, setFetchAgain}) => {
       // Envia una señal al backend cada vez que se escribe algo mediante sockets
       socket.current.emit("typing", selectedChat._id);
     }
+    // mas logica de typing
     let lastTypingTime = new Date().getTime();
     var timerLength = 3000;
     setTimeout(() => {

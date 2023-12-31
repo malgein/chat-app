@@ -3,6 +3,7 @@ import { Button } from "@chakra-ui/button";
 import { Box, Text } from "@chakra-ui/layout";
 import { Tooltip } from "@chakra-ui/tooltip";
 import {useNavigate} from 'react-router-dom'
+import { getSender } from "../../config/ChatLogics";
 import { useToast } from '@chakra-ui/toast';
 import { 
 	Avatar,
@@ -32,6 +33,13 @@ import ChatLoading from '../ChatLoading';
 //componente de renderizado con el mapeado de los usuarios a buscar 
 import UserListItem from '../userAvatar/UserListItem'
 import { Spinner } from '@chakra-ui/react';
+// Paquete de react para notificaciones visuales
+import NotificationBadge from "react-notification-badge";
+// Paquete de react para notificaciones visuales 
+import { Effect } from "react-notification-badge";
+
+
+
 
 //Este componente representa el navbar y el sidebar tipo modal de la app
 const SideDrawer = () => {
@@ -49,7 +57,7 @@ const SideDrawer = () => {
 	const navigate = useNavigate()
 
 	//Usuario logeado proviene del context
-	const {user, setSelectedChat, chats, setChats} = ChatState()
+	const {user, setSelectedChat, chats, setChats, notification, setNotification} = ChatState()
 
 	//Funcion que deslogea al usuario
 	const logoutHandler = () => {
@@ -159,8 +167,33 @@ const SideDrawer = () => {
 				<div>
 					<Menu>
 						<MenuButton p={1} >
+							{/* Paquetevisual para notificaciones de react js */}
+						<NotificationBadge
+                count={notification.length}
+								//  Este es el efecto visual de notificaciones
+                effect={Effect.SCALE}
+              />
 							<BellIcon m={1} fontSize="2xl"/>
 						</MenuButton>
+						<MenuList pl={2}>
+							{/* Si no existen notificaciones "no hay notificaciones en la campanita" */}
+							{!notification.length && "No New Messages"}
+							{/* Mapeamos las notificaciones y las mostramos dentro de un modal */}
+							{notification.map((notif) => (
+                <MenuItem
+                  key={notif._id}
+                  onClick={() => {
+										// La sig linea permirte q nos dirijamos inmediatamente al chat al seleccionar la notificacion convirtiendo el chat de la notificacion en el chat seleccionado
+                    setSelectedChat(notif.chat);
+                    setNotification(notification.filter((n) => n !== notif));
+                  }}
+                >
+                  {notif.chat.isGroupChat
+                    ? `New Message in ${notif.chat.chatName}`
+                    : `New Message from ${getSender(user, notif.chat.users)}`}
+                </MenuItem>
+              ))}
+						</MenuList>
 					</Menu>
 					<Menu>
 						<MenuButton as={Button} rightIcon={<ChevronDownIcon/>} >
