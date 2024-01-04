@@ -180,6 +180,7 @@ const SingleChat = ({fetchAgain, setFetchAgain}) => {
       // Si las notificaciones que ya existen no incluyen la notificacion que se esta agregando recientemente
        if (!notification.includes(newMessageRecieved)) {
         // Agregamos el mensaje recibido a las notificaciones
+        // console.log(newMessageRecieved)
          setNotification([newMessageRecieved, ...notification]);
          setFetchAgain(!fetchAgain);
        }
@@ -262,24 +263,6 @@ const SingleChat = ({fetchAgain, setFetchAgain}) => {
                   />
                 </>
               )}
-            {/* {messages &&
-              (!selectedChat.isGroupChat ? (
-                <>
-                  {getSender(user, selectedChat.users)}
-                  <ProfileModal
-                    user={getSenderFull(user, selectedChat.users)}
-                  />
-                </>
-              ) : (
-                <>
-                  {selectedChat.chatName.toUpperCase()}
-                  <UpdateGroupChatModal
-                    fetchMessages={fetchMessages}
-                    fetchAgain={fetchAgain}
-                    setFetchAgain={setFetchAgain}
-                  />
-                </>
-              ))} */}
           </Text>
           <Box
             display="flex"

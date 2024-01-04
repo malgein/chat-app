@@ -24,9 +24,9 @@ app.use(cors({
 //Le dice a nuestra aplicacion del backend que pueda usar elementos json
 app.use(express.json())
 
-app.get('/' , (req, res) => {
-  res.send('Api is working')
-})
+// app.get('/' , (req, res) => {
+//   res.send('Api is working')
+// })
 
 // app.get('/api/chat', (req, res) =>{
 // 	res.send(chats)
@@ -51,18 +51,16 @@ app.use("/api/message", messageRoutes);
 const __dirname1 = path.resolve();
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname1, "/frontend/build")));
+  app.use(express.static(path.join(__dirname1, "/client/build")));
 
   app.get("*", (req, res) =>
-    res.sendFile(path.resolve(__dirname1, "frontend", "build", "index.html"))
+    res.sendFile(path.resolve(__dirname1, "client", "build", "index.html"))
   );
 } else {
   app.get("/", (req, res) => {
     res.send("API is running..");
   });
 }
-
-
 
 
 app.use(notFound)
