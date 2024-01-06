@@ -26,6 +26,13 @@ import axios from 'axios'
 // los props de llamar otra vez los usuarios del chat
 const UpdateGroupChatModel = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
 
+  // Version deployada del backend
+  const ENDPOINT = 'http://localhost:5000/'
+
+
+  //  http://localhost:5000/
+  // https://chat-app-production-3083.up.railway.app/
+
 	//Funcionalidades requeridas para los modales
   const { isOpen, onOpen, onClose } = useDisclosure();
 // Es un loading que saldra cuando cargue el backend para cambiar el nombre del chat grupal
@@ -69,7 +76,7 @@ const UpdateGroupChatModel = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
       };
       // Hacemos una llamada al endpoint que elimina  usuarios del chat grupal, este recibe el id del chat  y el id del usuario que eliminamos 
       const { data } = await axios.put(
-        `http://localhost:5000/api/chat/groupremove`,
+        `${ENDPOINT}api/chat/groupremove`,
         {
           chatId: selectedChat._id,
           userId: user1._id,
@@ -116,7 +123,7 @@ const UpdateGroupChatModel = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
       };
 			// Endpoint para cambiar el nombre al chat en la bd necesitamos el id del chat y el nuevo nombre del chat
       const { data } = await axios.put(
-        `http://localhost:5000/api/chat/rename`,
+        `${ENDPOINT}api/chat/rename`,
         {
 					// le pasamos el id del chat seleccionado que vamos a editar
           chatId: selectedChat._id,
@@ -168,7 +175,7 @@ const UpdateGroupChatModel = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
       };
 
       //debemos aplicar la configuracion de headers debido a que para llamar al endpoint necesitamos un token de autoriacion 
-      const { data } = await axios.get(`http://localhost:5000/api/user?search=${search}`, config);
+      const { data } = await axios.get(`${ENDPOINT}api/user?search=${search}`, config);
       console.log(data);
       setLoading(false);
       //Guardamos el resultado  que nos devuelve el endpoint del backend en searchResult state
@@ -221,7 +228,7 @@ const UpdateGroupChatModel = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
       };
       // Hacemos una llamada al endpoint que agrega nuevos usuarios al chat grupal, este recibe el id del chat a agregar y el id del usuario que agregaremos 
       const { data } = await axios.put(
-        `http://localhost:5000/api/chat/groupadd`,
+        `${ENDPOINT}api/chat/groupadd`,
         {
           chatId: selectedChat._id,
           userId: user1._id,

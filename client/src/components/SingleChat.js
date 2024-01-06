@@ -46,7 +46,12 @@ const SingleChat = ({fetchAgain, setFetchAgain}) => {
   const { selectedChat, setSelectedChat, user, notification, setNotification } = ChatState();
 
   // Endpoint del backend
-  const ENDPOINT = "http://localhost:5000"; 
+   // Version deployada del backend
+   const ENDPOINT = 'http://localhost:5000/'
+
+  //  http://localhost:5000/
+  // https://chat-app-production-3083.up.railway.app/
+  
 
   // Necesario para hacer conexiones con socket io
   // var socket, selectedChatCompare;
@@ -73,7 +78,7 @@ const SingleChat = ({fetchAgain, setFetchAgain}) => {
       // Traeremos todos los mensajes del chat seleccionado
       // console.log(selectedChat._id)
       const { data } = await axios.get(
-        `http://localhost:5000/api/message/${selectedChat._id}`,
+        `${ENDPOINT}api/message/${selectedChat._id}`,
         config
       );
       // console.log(messages)
@@ -116,7 +121,7 @@ const SingleChat = ({fetchAgain, setFetchAgain}) => {
             // limpiamos el state del mensaje para que se borre lo que escribimos del inpur de mensajes, esto no afecta a la llamada del backend porque es una peticion asincrona
             setNewMessage("");
         const { data } = await axios.post(
-          "http://localhost:5000/api/message",
+          `${ENDPOINT}api/message`,
           {
             // el contenido del nuevo mensaje es del state que esxtrae lo que escribimos del input
             content: newMessage,

@@ -44,6 +44,12 @@ import { Effect } from "react-notification-badge";
 //Este componente representa el navbar y el sidebar tipo modal de la app
 const SideDrawer = () => {
 
+	  // Version deployada del backend
+	  const ENDPOINT = 'http://localhost:5000/'
+
+		//  http://localhost:5000/
+  // https://chat-app-production-3083.up.railway.app/
+
 	//Estado que contiene el nombre o el email del usuario a buscar
   const [search, setSearch] = useState("");
 	//Guardamos el resultado de la llamada al backend de buscar a los usuarios por name o por email
@@ -88,7 +94,7 @@ const SideDrawer = () => {
       };
 
 			//debemos aplicar la configuracion de headers debido a que para llamar al endpoint necesitamos un token de autoriacion 
-      const { data } = await axios.get(`http://localhost:5000/api/user?search=${search}`, config);
+      const { data } = await axios.get(`${ENDPOINT}api/user?search=${search}`, config);
 
       setLoading(false);
 			//Guardamos el resultado  que nos devuelve el endpoint del backend en searchResult state
@@ -118,7 +124,7 @@ const SideDrawer = () => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.post(`http://localhost:5000/api/chat`, { userId }, config);
+      const { data } = await axios.post(`${ENDPOINT}api/chat`, { userId }, config);
 
 			//chats son todos los chats de la bd aqui verificara que el chat traido entre los dos usuarios anteriormente ya se encuentre entre los chats de la bd si no se encuentra lo actualiza
       if (!chats.find((c) => c._id === data._id)) setChats([data, ...chats]);

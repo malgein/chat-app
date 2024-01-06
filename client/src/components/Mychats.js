@@ -18,6 +18,12 @@ const Mychats = ({fetchAgain}) => {
 
   const { selectedChat, setSelectedChat, user, chats, setChats } = ChatState();
 
+    // Version deployada del backend
+    const ENDPOINT = 'http://localhost:5000/'
+
+      //  http://localhost:5000/
+  // https://chat-app-production-3083.up.railway.app/
+
 
   const toast = useToast();
 
@@ -31,7 +37,7 @@ const Mychats = ({fetchAgain}) => {
         },
       };
 //esta funcion me trae todos los chats en el que el usuario logeado esta presente a traves de una llamada al backend
-      const { data } = await axios.get("http://localhost:5000/api/chat", config);
+      const { data } = await axios.get(`${ENDPOINT}api/chat`, config);
       setChats(data);
     } catch (error) {
       toast({

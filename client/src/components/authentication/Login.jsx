@@ -11,6 +11,13 @@ import { ChatState } from '../../context/chatProvider'
 
 const Login = () => {
 
+  // Version deployada del backend
+  const ENDPOINT = 'http://localhost:5000/'
+
+
+  //  http://localhost:5000/
+  // https://chat-app-production-3083.up.railway.app/
+
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
   const [email, setEmail] = useState();
@@ -42,7 +49,7 @@ const Login = () => {
       };
 
       const { data } = await axios.post(
-        "http://localhost:5000/api/user/login",
+        `${ENDPOINT}api/user/login`,
         { email, password },
         config
       );

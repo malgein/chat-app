@@ -19,9 +19,17 @@ import { ChatState } from "../../context/chatProvider";
 import axios from 'axios'
 import UserListItem from '../userAvatar/UserListItem' 
 import UserBadgeItem from '../userAvatar/UserBadgeItem';
+// import ScaleLoader from "react-spinners/ScaleLoader";
+
 
 //Componente creado para crear el modal de chat de grupo
 const GroupChatModel = ({children}) => {
+
+// Version deployada del backend
+  const ENDPOINT = 'http://localhost:5000/'
+
+    //  http://localhost:5000/
+  // https://chat-app-production-3083.up.railway.app/
 
 	//Componente de chakra ui para crear modales
 	const { isOpen, onOpen, onClose } = useDisclosure();
@@ -54,8 +62,8 @@ const GroupChatModel = ({children}) => {
         },
       };
       //hacemos la peticion a la api con el query y lo guardamos en searchResult
-      const { data } = await axios.get(`http://localhost:5000/api/user?search=${search}`, config);
-      console.log(data);
+      const { data } = await axios.get(`${ENDPOINT}api/user?search=${search}`, config);
+      // console.log(data);
       // Pasamos el loading a false
       setLoading(false);
       // Obtenemos la respuesta de la llamada al backend y los guardamos en el state searchResult
@@ -95,7 +103,7 @@ const GroupChatModel = ({children}) => {
       };
       // Hacemos un llamado a la ruta del backend para crear un chat grupal
       const { data } = await axios.post(
-        `http://localhost:5000/api/chat/group`,
+        `${ENDPOINT}api/chat/group`,
         {
           // le pasamos como valores para crear el chat el nombre a traves de groupChatName
           name: groupChatName,
@@ -181,7 +189,7 @@ const GroupChatModel = ({children}) => {
                 onChange={(e) => handleSearch(e.target.value)}
               />
             </FormControl>
-            <Box w="100%" d="flex" flexWrap="wrap">
+            <Box w="100%" display="flex" flexWrap="wrap" mb='35px'>
               {/* Mapeamos los usuarios seleccionados por el controlador handleGroup
               // Los muestra en un componente de avatar previamente creado */}
               {selectedUsers.map((u) => (
@@ -194,7 +202,7 @@ const GroupChatModel = ({children}) => {
               ))}
             </Box>
             {loading ? (
-              // <ChatLoading />
+              // <ScaleLoader color= "#38B2AC"/>
               <div>Loading...</div>
             ) : (
               // mapeamos los usuarios buscados pero solo mostramos las 4 primeras coincidencias de usuarios para ser mostradas

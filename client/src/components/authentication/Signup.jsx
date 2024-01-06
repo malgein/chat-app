@@ -9,6 +9,13 @@ import axios from 'axios'
 
 const Signup = () => {
 
+// Version deployada del backend
+  const ENDPOINT = 'http://localhost:5000/'
+
+
+  //  http://localhost:5000/
+  // https://chat-app-production-3083.up.railway.app/
+
 	//Estado que representa  el mostrar o no la contraseña
   const [show, setShow] = useState(false);
 	//Nonbre del usuario que se registra
@@ -127,7 +134,7 @@ const Signup = () => {
 
 
       const {data}  = await axios.post(
-        "http://localhost:5000/api/user/", 
+        `${ENDPOINT}/api/user/`, 
 					{
 						name,
 						email,
