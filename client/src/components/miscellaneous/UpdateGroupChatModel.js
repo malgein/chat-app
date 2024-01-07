@@ -27,7 +27,7 @@ import axios from 'axios'
 const UpdateGroupChatModel = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
 
   // Version deployada del backend
-  const ENDPOINT = 'http://localhost:5000/'
+  const ENDPOINT = 'https://chat-app-production-3083.up.railway.app/'
 
 
   //  http://localhost:5000/
@@ -133,7 +133,7 @@ const UpdateGroupChatModel = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
         config
       );
 
-      console.log(data._id);
+      // console.log(data._id);
       // setSelectedChat("");
 			// el chat a selecionar sera el resuktado de la llamada el endpoint que es el chat al que acabamos de cambiar el nombre con los datos actualizados
       setSelectedChat(data);
@@ -176,7 +176,7 @@ const UpdateGroupChatModel = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
 
       //debemos aplicar la configuracion de headers debido a que para llamar al endpoint necesitamos un token de autoriacion 
       const { data } = await axios.get(`${ENDPOINT}api/user?search=${search}`, config);
-      console.log(data);
+      // console.log(data);
       setLoading(false);
       //Guardamos el resultado  que nos devuelve el endpoint del backend en searchResult state
       setSearchResult(data);

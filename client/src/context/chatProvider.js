@@ -15,6 +15,7 @@ const ChatProvider = ({children}) => {
 	// Estado global para las notificaciones de la app
 	const [notification, setNotification] = useState([]);
 
+	// const [notification, setNotification] = useState(new Set());
 
 	const navigate = useNavigate()
 
