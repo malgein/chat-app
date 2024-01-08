@@ -47,7 +47,7 @@ const SingleChat = ({fetchAgain, setFetchAgain}) => {
 
   // Endpoint del backend
    // Version deployada del backend
-   const ENDPOINT = 'http://localhost:5000/'
+   const ENDPOINT = 'https://chat-app-production-3083.up.railway.app/'
 
   //  http://localhost:5000/
   // https://chat-app-production-3083.up.railway.app/
@@ -173,7 +173,8 @@ const SingleChat = ({fetchAgain, setFetchAgain}) => {
    // Apenas se cambia el chat seleccionado se traen todos los chats del nuevo chat seleccionado
  }, [selectedChat]);
 
- console.log(notification)
+//  console.log(notification)
+
 
  useEffect(() => {
    socket.current.on("message recieved", (newMessageRecieved) => {
@@ -187,6 +188,8 @@ const SingleChat = ({fetchAgain, setFetchAgain}) => {
         // Agregamos el mensaje recibido a las notificaciones
         // console.log(newMessageRecieved)
          setNotification([newMessageRecieved, ...notification]);
+        //  setNotification(prevNotification => new Set([...prevNotification, newMessageRecieved]));
+        //  setNotification([notification, ...new Set(notification)])
          setFetchAgain(!fetchAgain);
        }
      } else {
@@ -305,6 +308,7 @@ const SingleChat = ({fetchAgain, setFetchAgain}) => {
               {istyping ? (
                 <div>
                   {/* animacion de typing */}
+                   
                   <Lottie
                     options={defaultOptions}
                     // height={50}
