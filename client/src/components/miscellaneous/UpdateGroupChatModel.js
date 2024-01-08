@@ -19,8 +19,8 @@ Spinner,
 import { ViewIcon } from "@chakra-ui/icons";
 //Estados globales del context
 import {ChatState} from '../../context/chatProvider'
-import UserBadgeItem from '../userAvatar/UserBadgeItem';
-import UserListItem from '../userAvatar/UserListItem';
+import UserBadgeItem from '../userAvatar/UserBadgeItem.js';
+import UserListItem from '../userAvatar/UserListItem.js';
 import axios from 'axios'
 
 // los props de llamar otra vez los usuarios del chat

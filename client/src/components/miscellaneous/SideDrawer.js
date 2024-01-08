@@ -31,10 +31,10 @@ import axios from 'axios'
 //Spinner de nuestra app
 import ChatLoading from '../ChatLoading';
 //componente de renderizado con el mapeado de los usuarios a buscar 
-import UserListItem from '../userAvatar/UserListItem'
+import UserListItem from '../userAvatar/UserListItem.js'
 import { Spinner } from '@chakra-ui/react';
 // Paquete de react para notificaciones visuales
-import NotificationBadge from "react-notification-badge";
+import NotificationBadge from "react-notification-badge.js";
 // Paquete de react para notificaciones visuales 
 import { Effect } from "react-notification-badge";
 

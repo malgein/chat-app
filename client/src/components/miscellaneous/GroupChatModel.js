@@ -17,8 +17,8 @@ import {
 } from "@chakra-ui/react";
 import { ChatState } from "../../context/chatProvider";
 import axios from 'axios'
-import UserListItem from '../userAvatar/UserListItem' 
-import UserBadgeItem from '../userAvatar/UserBadgeItem';
+import UserListItem from '../userAvatar/UserListItem.js' 
+import UserBadgeItem from '../userAvatar/UserBadgeItem.js';
 // import ScaleLoader from "react-spinners/ScaleLoader";
 
 
