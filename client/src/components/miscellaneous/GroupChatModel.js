@@ -17,7 +17,7 @@ import {
 } from "@chakra-ui/react";
 import { ChatState } from "../../context/chatProvider";
 import axios from 'axios'
-import UserListItem from '../userAvatar/UserListItem.js' 
+// import UserListItem from '../userAvatar/UserListItem.js' 
 import UserBadgeItem from '../userAvatar/UserBadgeItem.js';
 // import ScaleLoader from "react-spinners/ScaleLoader";
 
@@ -206,15 +206,16 @@ const ENDPOINT = 'https://chat-app-production-3083.up.railway.app/'
               <div>Loading...</div>
             ) : (
               // mapeamos los usuarios buscados pero solo mostramos las 4 primeras coincidencias de usuarios para ser mostradas
-              searchResult
-                ?.slice(0, 4)
-                .map((user) => (
-                  <UserListItem
-                    key={user._id}
-                    user={user}
-                    handleFunction={() => handleGroup(user)}
-                  />
-                ))
+              // searchResult
+              //   ?.slice(0, 4)
+              //   .map((user) => (
+              //     <UserListItem
+              //       key={user._id}
+              //       user={user}
+              //       handleFunction={() => handleGroup(user)}
+              //     />
+              //   ))
+              <></>
             )}
           </ModalBody>
 					<ModalFooter>
