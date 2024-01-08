@@ -10,7 +10,7 @@ import axios from 'axios'
 const Signup = () => {
 
 // Version deployada del backend
-  const ENDPOINT = 'http://localhost:5000/'
+  const ENDPOINT = 'https://chat-app-production-3083.up.railway.app/'
 
 
   //  http://localhost:5000/
@@ -70,7 +70,7 @@ const Signup = () => {
         .then((data) => {
 					// Esto nos trae como valor de resultado los datos del archivo que subimos y lo guardamos en el estado de pic
           setPic(data.url.toString());
-          console.log(data.url.toString());
+          // console.log(data.url.toString());
 					//Alternaremos en varias ocasiones con el cambio de valor del state de loading
           setLoading(false);
         })
@@ -117,7 +117,7 @@ const Signup = () => {
       });
       return;
     }
-    console.log(name, email, password, pic);
+    // console.log(name, email, password, pic);
     try {
       const config = {
         headers: {
@@ -134,7 +134,7 @@ const Signup = () => {
 
 
       const {data}  = await axios.post(
-        `${ENDPOINT}/api/user/`, 
+        `${ENDPOINT}api/user/`, 
 					{
 						name,
 						email,
@@ -143,7 +143,7 @@ const Signup = () => {
 					},
 					config
 				);
-      console.log(data);
+      // console.log(data);
       toast({
         title: "Registration Successful",
         status: "success",

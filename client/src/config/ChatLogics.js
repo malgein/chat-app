@@ -5,7 +5,7 @@ export const getSender = (loggedUser, users) => {
 
 // Sirve para mostrar los datos del usuario con el que se chatea en un modal con los datos del mismo
 export const getSenderFull = (loggedUser, users) => {
-  return users[0]._id === loggedUser._id ? users[1] : users[0];
+  return users[0]?._id === loggedUser._id ? users[1] : users[0];
 };
 
 // funcion que se encarga de verificcar el largo de los mensajes y al seguir existiendo mensajes en scrollableChat estos pertenezcan a diferentes usuarios o no para el renderizado de la foto profile

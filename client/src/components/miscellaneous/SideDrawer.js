@@ -45,7 +45,7 @@ import { Effect } from "react-notification-badge";
 const SideDrawer = () => {
 
 	  // Version deployada del backend
-	  const ENDPOINT = 'http://localhost:5000/'
+	  const ENDPOINT = 'https://chat-app-production-3083.up.railway.app/'
 
 		//  http://localhost:5000/
   // https://chat-app-production-3083.up.railway.app/
@@ -114,7 +114,7 @@ const SideDrawer = () => {
 
 	//FUncion que trae el chat del usuario seleccionado y el usuario logeado, si no existe ese chat lo crea de cero
 	const accessChat = async(userId) => {
-		console.log(userId);
+		// console.log(userId);
 
     try {
       setLoadingChat(true);
@@ -145,6 +145,8 @@ const SideDrawer = () => {
     }
 
 	}
+
+	// console.log(notification)
 
   return (
     <>
@@ -194,9 +196,9 @@ const SideDrawer = () => {
                     setNotification(notification.filter((n) => n !== notif));
                   }}
                 >
-                  {notif.chat.isGroupChat
-                    ? `New Message in ${notif.chat.chatName}`
-                    : `New Message from ${getSender(user, notif.chat.users)}`}
+                  {notif.chat?.isGroupChat
+                    ? `New Message in ${notif.chat?.chatName}`
+                    : `New Message from ${getSender(user, notif.chat?.users)}`}
                 </MenuItem>
               ))}
 						</MenuList>
