@@ -19,8 +19,9 @@ Spinner,
 import { ViewIcon } from "@chakra-ui/icons";
 //Estados globales del context
 import {ChatState} from '../../context/chatProvider'
-import UserBadgeItem from '../userAvatar/UserBadgeItem.js';
+import UserBadgeItem from '../UserBadgeItem.js';
 // import UserListItem from '../userAvatar/UserListItem.js';
+import UserListItem from '../UserListItem.js';
 import axios from 'axios'
 
 // los props de llamar otra vez los usuarios del chat
@@ -328,12 +329,12 @@ const UpdateGroupChatModel = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
 							// Si no hay carga de loading renderizamos los usuarios mediante el state searchResult en el cual guardaremos al llamar al backend
             ) : (
               searchResult?.map((user) => (
-                // <UserListItem
-                //   key={user._id}
-                //   user={user}
-                //   handleFunction={() => handleAddUser(user)}
-                // />
-                <></>
+                <UserListItem
+                  key={user._id}
+                  user={user}
+                  handleFunction={() => handleAddUser(user)}
+                />
+                // <></>
               ))
             )}
           </ModalBody>

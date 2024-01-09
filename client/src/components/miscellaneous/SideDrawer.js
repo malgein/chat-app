@@ -32,9 +32,10 @@ import axios from 'axios'
 import ChatLoading from '../ChatLoading';
 //componente de renderizado con el mapeado de los usuarios a buscar 
 // import UserListItem from '../userAvatar/UserListItem.js'
+import UserListItem from '../UserListItem';
 import { Spinner } from '@chakra-ui/react';
 // Paquete de react para notificaciones visuales
-import NotificationBadge from "react-notification-badge.js";
+import NotificationBadge from "react-notification-badge";
 // Paquete de react para notificaciones visuales 
 import { Effect } from "react-notification-badge";
 
@@ -244,14 +245,14 @@ const SideDrawer = () => {
             </Box>
 						{/* Si no esta cargando la app renderiza el mapeo de usuarios buscados por nombre / email */}
 						{loading ? (<ChatLoading /> ): (
-							// searchResult?.map(user => (
-							// 	<UserListItem 
-							// 		key={user?._id}
-							// 		handleFunction={() => accessChat(user?._id)}
-							// 		user={user}
-							// 	/>
-							// ))
-							<></>
+							searchResult?.map(user => (
+								<UserListItem 
+									key={user?._id}
+									handleFunction={() => accessChat(user?._id)}
+									user={user}
+								/>
+							))
+							// <></>
 						) }
 						{loadingChat && <Spinner ml="auto" display="flex" />}
 					</DrawerBody>
