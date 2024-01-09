@@ -1,3 +1,4 @@
+// @js-ignore
 import React, {useState} from 'react'
 import { Button } from "@chakra-ui/button";
 import { Box, Text } from "@chakra-ui/layout";
@@ -35,8 +36,10 @@ import ChatLoading from '../ChatLoading';
 import UserListItem from '../UserListItem';
 import { Spinner } from '@chakra-ui/react';
 // Paquete de react para notificaciones visuales
+// @ts-ignore
 import NotificationBadge from "react-notification-badge";
 // Paquete de react para notificaciones visuales 
+// @js-ignore
 import { Effect } from "react-notification-badge";
 
 
