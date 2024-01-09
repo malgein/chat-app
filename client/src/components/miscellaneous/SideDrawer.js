@@ -37,10 +37,10 @@ import UserListItem from '../UserListItem';
 import { Spinner } from '@chakra-ui/react';
 // Paquete de react para notificaciones visuales
 // @ts-ignore
-import NotificationBadge from "react-notification-badge";
-// Paquete de react para notificaciones visuales 
-// @js-ignore
-import { Effect } from "react-notification-badge";
+// import NotificationBadge from "react-notification-badge";
+// // Paquete de react para notificaciones visuales 
+// // @js-ignore
+// import { Effect } from "react-notification-badge";
 
 
 
@@ -180,11 +180,11 @@ const SideDrawer = () => {
 					<Menu>
 						<MenuButton p={1} >
 							{/* Paquetevisual para notificaciones de react js */}
-						<NotificationBadge
+						{/* <NotificationBadge
                 count={notification.length}
 								//  Este es el efecto visual de notificaciones
                 effect={Effect.SCALE}
-              />
+              /> */}
 							<BellIcon m={1} fontSize="2xl"/>
 						</MenuButton>
 						<MenuList pl={2}>
