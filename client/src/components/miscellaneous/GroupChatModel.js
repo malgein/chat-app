@@ -27,7 +27,7 @@ import UserBadgeItem from '../UserBadgeItem.js';
 const GroupChatModel = ({children}) => {
 
 // Version deployada del backend
-const ENDPOINT = 'https://chat-app-production-3083.up.railway.app/'
+const ENDPOINT = "https://chat-app-production-3083.up.railway.app/"
 
     //  http://localhost:5000/
   // https://chat-app-production-3083.up.railway.app/

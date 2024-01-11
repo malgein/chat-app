@@ -12,7 +12,7 @@ import { ChatState } from '../../context/chatProvider'
 const Login = () => {
 
   // Version deployada del backend
-  const ENDPOINT = 'https://chat-app-production-3083.up.railway.app/'
+  const ENDPOINT = "http://localhost:5000/"
 
 
   //  http://localhost:5000/

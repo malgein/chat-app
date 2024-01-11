@@ -35,6 +35,7 @@ import ChatLoading from '../ChatLoading';
 // import UserListItem from '../userAvatar/UserListItem.js'
 import UserListItem from '../UserListItem';
 import { Spinner } from '@chakra-ui/react';
+import './SideDrawer.css'
 // Paquete de react para notificaciones visuales
 // @ts-ignore
 // import NotificationBadge from "react-notification-badge";
@@ -49,7 +50,7 @@ import { Spinner } from '@chakra-ui/react';
 const SideDrawer = () => {
 
 	  // Version deployada del backend
-	  const ENDPOINT = 'https://chat-app-production-3083.up.railway.app/'
+	  const ENDPOINT = "https://chat-app-production-3083.up.railway.app/"
 
 		//  http://localhost:5000/
   // https://chat-app-production-3083.up.railway.app/
@@ -68,6 +69,9 @@ const SideDrawer = () => {
 
 	//Usuario logeado proviene del context
 	const {user, setSelectedChat, chats, setChats, notification, setNotification} = ChatState()
+
+	// const [isActive, setIsActive] = useState(false);
+ 	// const [notificationCount, setNotificationCount] = useState(0);
 
 	//Funcion que deslogea al usuario
 	const logoutHandler = () => {
@@ -185,7 +189,15 @@ const SideDrawer = () => {
 								//  Este es el efecto visual de notificaciones
                 effect={Effect.SCALE}
               /> */}
-							<BellIcon m={1} fontSize="2xl"/>
+
+							{/* <BellIcon m={1} fontSize="2xl"/> */}
+							<div className="notification-container">
+      					<div className='notification-icon'>
+        				{notification.length > 0 && <span className="notification-count">{notification.length}</span>}
+								<BellIcon m={1} fontSize="2xl"/>
+      					</div>
+    					</div>
+
 						</MenuButton>
 						<MenuList pl={2}>
 							{/* Si no existen notificaciones "no hay notificaciones en la campanita" */}

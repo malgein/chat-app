@@ -13,7 +13,7 @@ const app = express()
 dotenv.config()
 connectDB()
 
-// Deploy: https://chat-app.wilmerdev.com/
+// Deploy: https://chat-app.wilmerdev.com
 // Local: http://localhost:3000
 
 app.use(cors({
@@ -82,6 +82,7 @@ const io = require("socket.io")(server, {
 	},
   });
 
+  //Funcionalidad de mensajes como tal
   io.on("connection", (socket) => {
 	console.log("Connected to socket.io");
 
@@ -100,9 +101,12 @@ const io = require("socket.io")(server, {
   });
 
 	// Funcionalidad para isTyping
+	// aqui al socket se le indica que el usuario ha empezado a tipear
 	socket.on("typing", (room) => socket.in(room).emit("typing"));
+	// Aqui se le indica al socket que el usuario ha dejado de tipear
   socket.on("stop typing", (room) => socket.in(room).emit("stop typing"));
 
+  	// Logica de las notificaciones como tal
 	// room llamado new message
 	socket.on("new message", (newMessageRecieved) => {
     var chat = newMessageRecieved.chat;

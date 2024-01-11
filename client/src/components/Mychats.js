@@ -19,7 +19,7 @@ const Mychats = ({fetchAgain}) => {
   const { selectedChat, setSelectedChat, user, chats, setChats } = ChatState();
 
     // Version deployada del backend
-    const ENDPOINT = 'https://chat-app-production-3083.up.railway.app/'
+    const ENDPOINT = "http://localhost:5000/"
 
       //  http://localhost:5000/
   // https://chat-app-production-3083.up.railway.app/

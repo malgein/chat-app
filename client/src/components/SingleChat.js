@@ -47,7 +47,7 @@ const SingleChat = ({fetchAgain, setFetchAgain}) => {
 
   // Endpoint del backend
    // Version deployada del backend
-   const ENDPOINT = 'https://chat-app-production-3083.up.railway.app/'
+   const ENDPOINT = "http://localhost:5000/"
 
   //  http://localhost:5000/
   // https://chat-app-production-3083.up.railway.app/
