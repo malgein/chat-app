@@ -21,7 +21,7 @@ app.use(cors({
 	credentials: true
 }))
 
-//Le dice a nuestra aplicacion del backend que pueda usar elementos json
+//Le dice a nuestra aplicacion del backend que pueda usar elementos json.
 app.use(express.json())
 
 app.get('/' , (req, res) => {
