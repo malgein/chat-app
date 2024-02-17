@@ -36,21 +36,12 @@ import ChatLoading from '../ChatLoading';
 import UserListItem from '../UserListItem';
 import { Spinner } from '@chakra-ui/react';
 import './SideDrawer.css'
-// Paquete de react para notificaciones visuales
-// @ts-ignore
-// import NotificationBadge from "react-notification-badge";
-// // Paquete de react para notificaciones visuales 
-// // @js-ignore
-// import { Effect } from "react-notification-badge";
-
-
-
+import ENDPOINT from '../../helper/endpoint';
 
 //Este componente representa el navbar y el sidebar tipo modal de la app
 const SideDrawer = () => {
 
 	  // Version deployada del backend
-	  const ENDPOINT = "https://chat-app-production-3083.up.railway.app/"
 
 		//  http://localhost:5000/
   // https://chat-app-production-3083.up.railway.app/
@@ -154,7 +145,7 @@ const SideDrawer = () => {
 
 	}
 
-	// console.log(notification)
+	console.log(notification)
 
   return (
     <>

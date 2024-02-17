@@ -17,7 +17,7 @@ import io from "socket.io-client";
 import Lottie from 'react-lottie'
 import animationData from '../animations/typing.json'
 import "./styles.css";
-
+import ENDPOINT from '../helper/endpoint';
 
 
 // fetchAgain es una funcion que se pasa por props y que se va a ejecutar para traer los chats del usuario actualizados
@@ -44,10 +44,6 @@ const SingleChat = ({fetchAgain, setFetchAgain}) => {
   };
 
   const { selectedChat, setSelectedChat, user, notification, setNotification } = ChatState();
-
-  // Endpoint del backend
-   // Version deployada del backend
-   const ENDPOINT = "https://chat-app-production-3083.up.railway.app/"
 
   //  http://localhost:5000/
   // https://chat-app-production-3083.up.railway.app/
@@ -173,7 +169,7 @@ const SingleChat = ({fetchAgain, setFetchAgain}) => {
    // Apenas se cambia el chat seleccionado se traen todos los chats del nuevo chat seleccionado
  }, [selectedChat]);
 
-//  console.log(notification)
+ console.log(notification)
 
 
  useEffect(() => {

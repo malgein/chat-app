@@ -17,17 +17,14 @@ import {
 } from "@chakra-ui/react";
 import { ChatState } from "../../context/chatProvider";
 import axios from 'axios'
-// import UserListItem from '../userAvatar/UserListItem.js' 
 import UserListItem from '../UserListItem.js';
 import UserBadgeItem from '../UserBadgeItem.js';
-// import ScaleLoader from "react-spinners/ScaleLoader";
+import ENDPOINT from '../../helper/endpoint.js';
+
 
 
 //Componente creado para crear el modal de chat de grupo
 const GroupChatModel = ({children}) => {
-
-// Version deployada del backend
-const ENDPOINT = "https://chat-app-production-3083.up.railway.app/"
 
     //  http://localhost:5000/
   // https://chat-app-production-3083.up.railway.app/

@@ -23,13 +23,10 @@ import UserBadgeItem from '../UserBadgeItem.js';
 // import UserListItem from '../userAvatar/UserListItem.js';
 import UserListItem from '../UserListItem.js';
 import axios from 'axios'
+import ENDPOINT from '../../helper/endpoint.js';
 
 // los props de llamar otra vez los usuarios del chat
 const UpdateGroupChatModel = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
-
-  // Version deployada del backend
-  const ENDPOINT = "https://chat-app-production-3083.up.railway.app/"
-
 
   //  http://localhost:5000/
   // https://chat-app-production-3083.up.railway.app/

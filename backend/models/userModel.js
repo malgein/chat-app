@@ -1,6 +1,11 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 
+const notificationSchema = mongoose.Schema({
+  type: { type: String, required: true }, // Tipo de notificación (puedes personalizar según tus necesidades)
+  content: { type: String, required: true,  default: [] }, // Contenido de la notificación
+});
+
 const userSchema = mongoose.Schema(
   {
     name: { type: "String", required: true },
@@ -17,6 +22,7 @@ const userSchema = mongoose.Schema(
       required: true,
       default: false,
     },
+    notifications: [notificationSchema], 
   },
   { timestaps: true }
 );

@@ -9,6 +9,7 @@ import ChatLoading from './ChatLoading';
 //Funcion necesaria para poder seleccionar el chat
 import {getSender} from '../config/ChatLogics'
 import GroupChatModel from './miscellaneous/GroupChatModel';
+import ENDPOINT from '../helper/endpoint';
 
 
 // fetchAgain es una funcion que se pasa por props y que se va a ejecutar para traer los chats del usuario actualizados
@@ -17,10 +18,6 @@ const Mychats = ({fetchAgain}) => {
   const [loggedUser, setLoggedUser] = useState();
 
   const { selectedChat, setSelectedChat, user, chats, setChats } = ChatState();
-
-    // Version deployada del backend
-    const ENDPOINT = "https://chat-app-production-3083.up.railway.app/"
-
       //  http://localhost:5000/
   // https://chat-app-production-3083.up.railway.app/
 

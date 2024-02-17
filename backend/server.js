@@ -17,7 +17,7 @@ connectDB()
 // Local: http://localhost:3000
 
 app.use(cors({
-	origin: "https://chat-app.wilmerdev.com",
+	origin: "http://localhost:3000",
 	credentials: true
 }))
 
@@ -77,7 +77,7 @@ const io = require("socket.io")(server, {
 	//Se refiere al tiempo de espera mientras esta inactivo si en 1 minuto ningun usuario hace uso se cierra por proteccion
 	pingTimeout: 60000,
 	cors: {
-	  origin: "https://chat-app.wilmerdev.com",
+	  origin: "http://localhost:3000",
 	  // credentials: true,
 	},
   });

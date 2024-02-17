@@ -5,13 +5,9 @@ import { Input, InputGroup, InputRightElement } from "@chakra-ui/input";
 import { VStack } from "@chakra-ui/layout";
 import { useToast } from '@chakra-ui/toast';
 import axios from 'axios'
-// import {useHistory} from 'react-router-dom'
+import ENDPOINT from '../../helper/endpoint';
 
 const Signup = () => {
-
-// Version deployada del backend
-  const ENDPOINT = "https://chat-app-production-3083.up.railway.app/"
-
 
   //  http://localhost:5000/
   // https://chat-app-production-3083.up.railway.app/
