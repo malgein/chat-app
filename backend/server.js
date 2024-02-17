@@ -77,7 +77,7 @@ const io = require("socket.io")(server, {
 	//Se refiere al tiempo de espera mientras esta inactivo si en 1 minuto ningun usuario hace uso se cierra por proteccion
 	pingTimeout: 60000,
 	cors: {
-	  origin: "http://localhost:3000",
+	  origin: "https://chat-app.wilmerdev.com",
 	  // credentials: true,
 	},
   });
