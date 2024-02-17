@@ -17,7 +17,7 @@ connectDB()
 // Local: http://localhost:3000
 
 app.use(cors({
-	origin: "http://localhost:3000",
+	origin: "https://chat-app.wilmerdev.com",
 	credentials: true
 }))
 
