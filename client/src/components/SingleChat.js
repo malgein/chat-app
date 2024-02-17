@@ -169,12 +169,12 @@ const SingleChat = ({fetchAgain, setFetchAgain}) => {
    // Apenas se cambia el chat seleccionado se traen todos los chats del nuevo chat seleccionado
  }, [selectedChat]);
 
- console.log(notification)
+//  console.log(notification)
 
 
  useEffect(() => {
    socket.current.on("message recieved", (newMessageRecieved) => {
-     if (
+    if (
        !selectedChatCompare.current || // if chat is not selected or doesn't match current chat
        selectedChatCompare.current._id !== newMessageRecieved.chat._id
      ) {

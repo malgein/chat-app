@@ -145,7 +145,7 @@ const SideDrawer = () => {
 
 	}
 
-	console.log(notification)
+	// console.log(notification)
 
   return (
     <>
